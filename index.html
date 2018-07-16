@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <!-- Libraries -->
+    <!-- Module d3.js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+
+    <!-- Classybrew permettant de faire la mise en classe ainsi que le coloriage de la carte -->
+    <script src="https://cdn.rawgit.com/christiankaiser/classybrew/b8ca77d5a6b7eef5586f5148c36ee937aa1bacfb/build/classybrew.min.js"></script>
+
+    <!-- Link to .css -->
+    <link rel ="stylesheet" href="style.css" />
+
+    <!-- Link to data -->
+    <script src="Data/data.js"></script>
+
+
+  </head>
+  <body>
+
+    <!-- Main -->
+    <div id = "title">
+      <h1>Evolution de la population </h1>
+      <p id="year"></p>
+      <p id="aff"></p>
+
+    <!-- Creation of the frame of the map -->
+      <svg class="choropleth" width="960" height="600"></svg>
+
+
+      <!-- Footer -->
+      <div id = "footer">
+        <p> © Ludivine Stofer | Tous droits réservés </p>
+      </div>
+
+
+      <!-- Link to script .js -->
+      <script src="index.js"></script>
+
+      <!-- Run the script once everything is loaded -->
+      <script> APP.main(); </script>
+
+  </body>
+</html>
