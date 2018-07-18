@@ -29,11 +29,11 @@ APP.creatMap = function(){
       "https://cdn.rawgit.com/christiankaiser/d3-topojson-choropleth/ee12f6a108eddaa9cd119866b2e9cd52bb450cbc/data/vec200-topo.json"
     )
     .defer(
-      d3.json,
-      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/data.json",
+      d3.csv,
+      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/evo_pop.csv",
       function(d){
-        M.data[d.canton] = d;
-        // M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
+        M.data[d.kt] = d;
+        M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
       }
     )
     .await(APP.drawMap);
@@ -78,9 +78,9 @@ APP.drawMap = function(error, data){
 
   // Transformation des features en geoJSON et en SVG
   M.map
-    .append('g').attr('class', 'communes')
+    .append('g').attr('class', 'cantons')
     .selectAll('path')
-    .data(topojson.feature(data, data.objects.communes).features) // Utilisation et conversion du TopoJSON
+    .data(topojson.feature(data, data.objects.cantons).features) // Utilisation et conversion du TopoJSON
     .enter()
     .append('path')
     .attr('fill', function(d){
