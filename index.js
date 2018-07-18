@@ -33,7 +33,7 @@ APP.creatMap = function(){
       "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/evo_pop.csv",
       function(d){
         M.data[d.kt] = d;
-        M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
+        M.dataSeries.push(parseFloat(d.variation_pourcent))
       }
     )
     .await(APP.drawMap);
