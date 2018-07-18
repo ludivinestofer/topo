@@ -30,7 +30,7 @@ APP.creatMap = function(){
     )
     .defer(
       d3.json,
-      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/data.js",
+      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/data.json",
       function(d){
         M.data[d.canton] = d;
         // M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
