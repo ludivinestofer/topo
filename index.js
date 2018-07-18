@@ -26,14 +26,14 @@ APP.creatMap = function(){
   d3.queue()
     .defer(
       d3.json,
-      "https://cdn.rawgit.com/ludivinestofer/topo/master/TopoJson/cantons_lakes_topo.json"
+      "https://cdn.rawgit.com/christiankaiser/d3-topojson-choropleth/ee12f6a108eddaa9cd119866b2e9cd52bb450cbc/data/vec200-topo.json"
     )
     .defer(
       d3.json,
       "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/data.js",
       function(d){
-        M.data[d.id] = d;
-        M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
+        M.data[d.canton] = d;
+        // M.dataSeries.push(parseFloat(d.p_fem_singl_2034))
       }
     )
     .await(APP.drawMap);
@@ -65,16 +65,16 @@ APP.drawMap = function(error, data){
     );
 
   // Mise en classe de la carte avec Jenks.
-  M.brew = new classyBrew();
-  M.brew.setSeries(M.dataSeries);
-  M.brew.setNumClasses(6);
-  M.brew.setColorCode('PuBu');
-  M.breaks = M.brew.classify('jenks');
+  // M.brew = new classyBrew();
+  // M.brew.setSeries(M.dataSeries);
+  // M.brew.setNumClasses(6);
+  // M.brew.setColorCode('PuBu');
+  // M.breaks = M.brew.classify('jenks');
 
 // Sélection des classes et des couleurs
-  M.color = d3.scaleThreshold()
-    .domain(M.breaks.slice(1,6))
-    .range(M.brew.getColors());
+  // M.color = d3.scaleThreshold()
+  //   .domain(M.breaks.slice(1,6))
+  //   .range(M.brew.getColors());
 
   // Transformation des features en geoJSON et en SVG
   M.map
@@ -84,22 +84,23 @@ APP.drawMap = function(error, data){
     .enter()
     .append('path')
     .attr('fill', function(d){
-      //return '#f00';
-      return M.data[d.properties.id] ?
-        M.color(M.data[d.properties.id].p_fem_singl_2034) :
+      return '#f00';
+      // return M.data[d.properties.id] ?
+      //   M.color(M.data[d.properties.id].p_fem_singl_2034) :
         '#fff'; // Code couleur pour les données manquantes.
     })
+    .attr('stroke', '#fff').attr('stroke-width', '200')
     .attr('d', M.path);
 
   // Limites des cantons tracées en blanc. Attention le stroke-width est en mètres !!
-  M.map
-    .append('g').attr('class', 'cantons')
-    .selectAll('path')
-    .data(topojson.feature(data, data.objects.cantons).features)
-    .enter()
-    .append('path')
-    .attr('stroke', '#fff').attr('stroke-width', '200')
-    .attr('fill', 'none').attr('d', M.path);
+  // M.map
+  //   .append('g').attr('class', 'cantons')
+  //   .selectAll('path')
+  //   .data(topojson.feature(data, data.objects.cantons).features)
+  //   .enter()
+  //   .append('path')
+  //   .attr('stroke', '#fff').attr('stroke-width', '200')
+  //   .attr('fill', 'none').attr('d', M.path);
 
   // La couche des lacs est en dernier afin qu'ils apparaissent dessus.
   M.map
