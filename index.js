@@ -30,7 +30,7 @@ APP.creatMap = function(){
     )
     .defer(
       d3.csv,
-      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/evo_pop.csv",
+      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/evo_pop_essai.csv",
       function(d){
         M.data[d.kt] = d;
         M.dataSeries.push(parseFloat(d.variation_pourcent))
