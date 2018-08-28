@@ -29,10 +29,13 @@ APP.creatMap = function(){
       "https://cdn.rawgit.com/christiankaiser/d3-topojson-choropleth/ee12f6a108eddaa9cd119866b2e9cd52bb450cbc/data/vec200-topo.json"
     )
     .defer(
-      d3.csv,
-      "https://cdn.rawgit.com/ludivinestofer/topo/master/Data/evo_pop_essai.csv",
+      d3.tsv,
+      "https://cdn.rawgit.com/ludivinestofer/topo/b777456fdeb25d33f488d8f2173fea4d6a072164/Data/evo_pop_essai.tsv",
       function(d){
         M.data[d.kt] = d;
+
+        // Construire un array avec les valeurs pour ClassyBrew (mise en classe)
+        // donc uniquement variable relative
         M.dataSeries.push(parseFloat(d.variation_pourcent))
       }
     )
@@ -65,16 +68,16 @@ APP.drawMap = function(error, data){
     );
 
   // Mise en classe de la carte avec Jenks.
-  // M.brew = new classyBrew();
-  // M.brew.setSeries(M.dataSeries);
-  // M.brew.setNumClasses(6);
-  // M.brew.setColorCode('PuBu');
-  // M.breaks = M.brew.classify('jenks');
+  M.brew = new classyBrew();
+  M.brew.setSeries(M.dataSeries);
+  M.brew.setNumClasses(6);
+  M.brew.setColorCode('PuBu');
+  M.breaks = M.brew.classify('jenks');
 
 // Sélection des classes et des couleurs
-  // M.color = d3.scaleThreshold()
-  //   .domain(M.breaks.slice(1,6))
-  //   .range(M.brew.getColors());
+  M.color = d3.scaleThreshold()
+    .domain(M.breaks.slice(1,6))
+    .range(M.brew.getColors());
 
   // Transformation des features en geoJSON et en SVG
   M.map
@@ -84,13 +87,27 @@ APP.drawMap = function(error, data){
     .enter()
     .append('path')
     .attr('fill', function(d){
-      return '#f00';
+        return '#ccc';
       // return M.data[d.properties.id] ?
-      //   M.color(M.data[d.properties.id].p_fem_singl_2034) :
-        '#fff'; // Code couleur pour les données manquantes.
+      return M.color(M.data[d.properties.kt].variation_pourcent)
+      //  '#fff'; // Code couleur pour les données manquantes.
     })
     .attr('stroke', '#fff').attr('stroke-width', '200')
     .attr('d', M.path);
+
+    M.map
+      .append('g').attr('class', 'symbol')
+      .selectAll('path')
+      .data(centroid.features.sort(function(a, b) { return b.properties.population - a.properties.population; }))
+      .enter()
+      .append('path')
+      .attr("d", path.pointRadius(function(d) { return radius(d.variation_absolue); }))
+      .attr('fill', function(d){
+        return M.color(M.data[d.properties.kt].variation_pourcent)
+      })
+      .attr('stroke', '#fff').attr('stroke-width', '200')
+      .attr('d', M.path);
+
 
   // Limites des cantons tracées en blanc. Attention le stroke-width est en mètres !!
   // M.map
@@ -108,5 +125,5 @@ APP.drawMap = function(error, data){
     .selectAll('path')
     .data(topojson.feature(data, data.objects.lacs).features)
     .enter().append('path')
-    .attr('fill', '#777').attr('d', M.path);
+    .attr('fill', '#e5e5e5').attr('d', M.path);
 }
