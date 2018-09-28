@@ -35,7 +35,7 @@ APP.creatMap = function(){
     )
     .defer(
       d3.tsv,
-      "https://cdn.rawgit.com/ludivinestofer/topo/b59f31585c7f9bd392cec32fb4a2656baf14698c/Data/evo_pop_essai.tsv",
+      "https://cdn.rawgit.com/ludivinestofer/topo/bc16af4bf1b8e792be14b05326bb6128d432aa04/Data/evo_pop_essai.tsv",
       function(d){
         M.data[d.kt] = d;
         M.dataArray.push(d);
