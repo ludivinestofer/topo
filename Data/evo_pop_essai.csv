@@ -1,27 +1,27 @@
-kt;canton;population;variation_absolue;variation_pourcent
-1;Zurich;1487969;21545;1,50
-2;Berne;1026513;9030;0,90
-3;Lucerne;403397;4635;1,20
-4;Uri;36145;172;0,50
-5;Schwytz;155863;1770;1,10
-6;Obwald;37378;302;0,80
-7;Nidwald;42556;136;0,30
-8;Glaris;40147;119;0,30
-9;Zoug;123948;1814;1,50
-10;Fribourg;311914;4453;1,40
-11;Soleure;269441;3023;1,10
-12;Bale-Ville;193070;1253;0,70
-13;Bale-Campagne;285624;2393;0,80
-14;Schaffhouse;80769;933;1,20
-15;Appenzell Rh.-Ext.;54954;411;0,80
-16;Appenzell Rh.-Int.;16003;29;0,20
-17;Saint-Gall;502552;3487;0,70
-18;Grisons;197550;940;0,50
-19;Argovie;663462;9787;1,50
-20;Thurgovie;270709;3280;1,20
-21;Tessin;354375;2429;0,70
-22;Vaud;784822;11415;1,50
-23;Valais;339176;3480;1,00
-24;Neuchatel;178567;460;0,30
-25;Geneve;489524;4788;1,00
-26;Jura;73122;340;0,50
+kt;canton;population;variation_absolue;variation_pourcent;
+1;Zurich;ZH;1 178 848;3 391;0.3
+2;Berne;BE;940 928;-951;-0.1
+3;Lucerne;LU;341 809;1 273;0.4
+4;Uri;UR;35 861;-15;0
+5;Schwytz;SZ;123 788;1 379;1.1
+6;Obwald;OW;31 440;130;0.4
+7;Nidwald;NW;36 794;328;0.9
+8;Glaris;GL;39 161;-249;-0.6
+9;Zoug;ZG;93 737;1 345;1.5
+10;Fribourg;FR;227 866;3 314;1.5
+11;Soleure;SO;240 777;1 513;0.6
+12;Bâle-Ville;BS;194 913;-846;-0.4
+13;Bâle-Campagne;BL;253 911;1 580;0.6
+14;Schaffhouse;SH;73 835;-200;-0.3
+15;Appenzell Rh.-Ext.;AR;54 136;32;0.1
+16;Appenzell Rh.-Int.;AI;14 833;83;0.6
+17;Saint-Gall;SG;443 839;1 489;0.3
+18;Grisons;GR;185 999;936;0.5
+19;Argovie;AG;531 665;2 778;0.5
+20;Thurgovie;TG;224 822;1 450;0.6
+21;Tessin;TI;304 830;-369;-0.1
+22;Vaud;VD;606 471;794;0.1
+23;Valais;VS;272 315;1 024;0.4
+24;Neuchâtel;NE;165 232;-26;0
+25;Genève;GE;394 588;-878;-0.2
+26;Jura;JU;68 948;-313;-0.5
